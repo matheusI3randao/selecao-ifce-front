@@ -1,0 +1,60 @@
+<nz-page-header nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>Listagem de Pessoas</nz-page-header-title>
+
+  <nz-page-header-extra>
+    <button nz-button nzType="primary" [routerLink]="['/cadastros/pessoa/novo']">Novo</button>
+  </nz-page-header-extra>
+  <nz-page-header-content></nz-page-header-content>
+</nz-page-header>
+<form nz-form nzLayout="vertical" class="ant-advanced-search-form" (submit)="search()">
+  <div nz-row [nzGutter]="5">
+    <div nz-col [nzXs]="24" [nzMd]="7" [nzXl]="5" [nzXXl]="4">
+      <nz-form-item>
+        <nz-form-label>CPF</nz-form-label>
+        <nz-form-control>
+          <input nz-input [(ngModel)]="cpf" [ngModelOptions]="{standalone: true}" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzXs]="24" [nzMd]="17" [nzXl]="13" [nzXXl]="8">
+      <nz-form-item>
+        <nz-form-label>Nome</nz-form-label>
+        <nz-form-control>
+          <input nz-input [(ngModel)]="nome" [ngModelOptions]="{standalone: true}" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <nz-row>
+    <button nz-button type="reset" (click)="clear()">Limpar</button>
+    <button nz-button type="submit" [nzType]="'primary'" class="margin-left-button">
+      Pesquisar
+    </button>
+  </nz-row>
+</form>
+<br />
+
+<nz-table #basicTable nzBordered [nzData]="page?.content">
+  <thead>
+    <tr>
+      <th nzWidth="90px" class="text-center">CPF </th>
+      <th>Nome </th>
+      <th>E-mail </th>
+      <th nzWidth="100px" class="text-center">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor=" let data of basicTable.data">
+      <td>{{ data.cpf | cpfPipe }}</td>
+      <td>{{ data.nome }}</td>
+      <td>{{ data.email }}</td>
+
+      <td class="text-center">
+        <a [routerLink]="['/cadastros/pessoa/editar', data.id]"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-popconfirm nzPopconfirmTitle="Deseja realmente excluir esta pessoa?" (nzOnConfirm)="delete(data)"
+          class="delete"><i nz-icon nzType="close-circle" nzTheme="outline"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

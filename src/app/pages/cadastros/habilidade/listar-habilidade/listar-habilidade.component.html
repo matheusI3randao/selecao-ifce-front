@@ -1,0 +1,48 @@
+<nz-page-header nzBackIcon [nzGhost]="false">
+  <nz-page-header-title>Listagem de Habilidades (MOCK)</nz-page-header-title>
+
+  <nz-page-header-extra>
+    <button nz-button nzType="primary" [routerLink]="['/cadastros/habilidade/novo']">Novo</button>
+  </nz-page-header-extra>
+  <nz-page-header-content></nz-page-header-content>
+</nz-page-header>
+<form nz-form nzLayout="vertical" class="ant-advanced-search-form">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>Descrição</nz-form-label>
+        <nz-form-control>
+          <input nz-input [(ngModel)]="descricao" [ngModelOptions]="{standalone: true}" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <nz-row>
+    <button nz-button type="reset" (click)="clear()">Limpar</button>
+    <button nz-button type="submit" [nzType]="'primary'" (click)="search()" class="margin-left-button">
+      Pesquisar
+    </button>
+  </nz-row>
+</form>
+<br />
+
+<nz-table #basicTable nzBordered [nzData]="habilidades">
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th nzWidth="100px">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor=" let data of basicTable.data">
+      <td>{{ data.descricao }}</td>
+
+      <td class="text-center">
+        <a [routerLink]="['/cadastros/habilidade/editar', data.id]"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-popconfirm nzPopconfirmTitle="Deseja realmente excluir esta habilidade?" (nzOnConfirm)="delete(data)"
+          class="delete"><i nz-icon nzType="close-circle" nzTheme="outline"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

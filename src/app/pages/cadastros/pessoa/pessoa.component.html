@@ -1,0 +1,91 @@
+<nz-card nzTitle="Cadastro de Pessoa">
+
+  <form [formGroup]="formPessoa">
+    <nz-row [nzGutter]="5">
+      <nz-col [nzXs]="24" [nzMd]="24" [nzXl]="6" [nzXXl]="3">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label nzRequired> CPF </nz-form-label>
+            <input type="text" nz-input formControlName="cpf" mask="000.000.000-00" (change)="validarCpf()" />
+            <app-error-message label="CPF" [control]="formPessoa.controls.cpf"></app-error-message>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+
+      <nz-col [nzXs]="24" [nzMd]="24" [nzXl]="13" [nzXXl]="7">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label nzRequired> Nome </nz-form-label>
+            <input type="text" nz-input formControlName="nome" maxlength="60" />
+            <app-error-message label="Nome" [control]="formPessoa.controls.nome"></app-error-message>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+
+      <nz-col [nzXs]="24" [nzMd]="24" [nzXl]="5" [nzXXl]="4">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label nzRequired> Data de Nascimento </nz-form-label>
+            <nz-date-picker class="flex" nzFormat="dd/MM/yyyy" nzPlaceHolder="" formControlName="dataNascimento">
+            </nz-date-picker>
+            <app-error-message [control]="formPessoa.controls.dataNascimento"></app-error-message>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+
+      <nz-col [nzXs]="24" [nzMd]="24" [nzXl]="24" [nzXXl]="10">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label> E-mail </nz-form-label>
+            <input type="text" nz-input formControlName="email" maxlength="70" />
+            <app-error-message [control]="formPessoa.controls.email"></app-error-message>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+
+    <nz-row [nzGutter]="5">
+      <nz-col [nzXs]="24" [nzMd]="24" [nzXl]="6" [nzXXl]="4">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label nzRequired> Escolaridade </nz-form-label>
+            <nz-select formControlName="escolaridade">
+              <nz-option *ngFor="let escolaridade of lstEnumEscolaridade" [nzLabel]="escolaridade"
+                [nzValue]="obterValorEnumEscolaridade(escolaridade)">
+              </nz-option>
+            </nz-select>
+            <app-error-message [control]="formPessoa.controls.escolaridade"></app-error-message>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+
+      <nz-col [nzXs]="24" [nzMd]="24" [nzXl]="18" [nzXXl]="20">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label> Habilidades </nz-form-label>
+            <nz-select nzMode="tags" [(ngModel)]="listOfSelectedValue" [ngModelOptions]="{standalone: true}">
+              <nz-option *ngFor="let option of lstHabilidades" [nzLabel]="option.descricao" [nzValue]="option">
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+
+    </nz-row>
+    <nz-row>
+      <nz-col [nzXs]="24" [nzMd]="24" [nzXl]="24" [nzXXl]="24">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label> Observação </nz-form-label>
+            <textarea nz-input formControlName="observacao" maxlength="500"></textarea>
+            <app-error-message [control]="formPessoa.controls.observacao"></app-error-message>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+  </form>
+
+  <button nz-button [nzType]="'secundary'" [routerLink]="['/cadastros/pessoa']">Voltar</button>
+  <button nz-button [nzType]="'primary'" (click)="save()" class="margin-left-button">
+    {{ id ? 'Atualizar' : 'Salvar'}}</button>
+</nz-card>

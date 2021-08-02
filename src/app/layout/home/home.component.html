@@ -1,0 +1,38 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="sidebar-logo"></div>
+    <ul nzMode="inline" nz-menu nzTheme="light" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen="true" nzTitle="Cadastros" nzIcon="form">
+        <ul nzMode="inline">
+          <li nz-menu-item>
+            <i nz-icon nzType="user" nzTheme="outline"></i>
+            <a routerLink="/cadastros/pessoa">Pessoas</a>
+          </li>
+        </ul>
+
+        <ul nzMode="inline">
+          <li nz-menu-item>
+            <i nz-icon nzType="file-text" nzTheme="outline"></i>
+            <a routerLink="/cadastros/habilidade">Habilidades</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+        <a nz-button nzType="link">Sair</a>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

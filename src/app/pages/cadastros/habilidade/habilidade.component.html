@@ -1,0 +1,21 @@
+<nz-card nzTitle="Cadastro de Habilidades (MOCK)">
+
+  <form [formGroup]="formHabilidade">
+    <nz-row>
+      <nz-col [nzXs]="24" [nzMd]="24" [nzXl]="13" [nzXXl]="7">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label nzRequired> Descrição </nz-form-label>
+            <input type="text" nz-input formControlName="descricao" maxlength="60" />
+            <app-error-message label="Nome" [control]="formHabilidade.controls.descricao"></app-error-message>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-col>
+    </nz-row>
+  </form>
+
+  <button nz-button [nzType]="'secundary'" [routerLink]="['/cadastros/habilidade']"
+    class="margin-right-5">Voltar</button>
+  <button nz-button [nzType]="'primary'" (click)="save()" class="margin-left-button">
+    {{ id ? 'Atualizar' : 'Salvar'}}</button>
+</nz-card>

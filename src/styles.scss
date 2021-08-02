@@ -1,0 +1,73 @@
+@import '~ng-zorro-antd/ng-zorro-antd.min.css';
+@import '~ng-zorro-antd/style/index.min.css'; /* Import basic styles */
+@import '~ng-zorro-antd/button/style/index.min.css';
+
+// CSS Comum
+.flex {
+  display: flex;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.delete {
+  color: red;
+}
+
+.margin-left-button {
+  margin-left: 10px;
+}
+// Fim CSS Comum
+
+// Início alterações thema template
+
+.ant-card-head-title.ng-star-inserted {
+  margin-right: 12px;
+  margin-bottom: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.inner-content {
+  height: auto !important;
+}
+
+.ant-card-body {
+  background: white;
+}
+
+nz-form-label {
+  padding: 0 !important;
+}
+
+nz-content {
+  height: 100%;
+}
+
+nz-form-item {
+  margin: 0 0 5px !important;
+}
+
+.ant-layout-sider-children {
+  background: white;
+}
+
+.ant-input,
+.ant-picker {
+  background-color: #f7f9fc;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: #f7f9fc;
+}
+
+.ng-tns-c136-7.ng-tns-c135-11.ant-select-selector {
+  background-color: #f7f9fc;
+}
+// Fim alterações thema template
