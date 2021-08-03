@@ -20,7 +20,7 @@ export class ListarPessoasComponent implements OnInit {
     private sharedService: SharedService,
     private mensageiro: MensageiroService,
     private pessoaService: PessoaService,
-  ) {}
+  ) { }
 
   search() {
     this.sharedService.mostrarLoader();
@@ -31,7 +31,7 @@ export class ListarPessoasComponent implements OnInit {
         }
         this.page = res;
       },
-      error => this.mensageiro.erro(error),
+      error => this.mensageiro.processarErroBack(error),
       () => this.sharedService.esconderLoader(),
     );
   }
@@ -42,7 +42,7 @@ export class ListarPessoasComponent implements OnInit {
         this.mensageiro.sucesso('Pessoa excluída com sucesso!');
         this.search();
       },
-      error => this.mensageiro.erro(error),
+      error => this.mensageiro.processarErroBack(error),
       () => this.sharedService.esconderLoader(),
     );
   }

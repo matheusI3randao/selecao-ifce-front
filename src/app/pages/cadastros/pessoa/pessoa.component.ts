@@ -40,7 +40,7 @@ export class PessoaComponent implements OnInit {
     private sharedService: SharedService,
     private mensageiro: MensageiroService,
     private pessoaService: PessoaService,
-  ) {}
+  ) { }
 
   private prepareInput() {
     this.pessoaInput = {
@@ -77,7 +77,7 @@ export class PessoaComponent implements OnInit {
       this.mensageiro.sucesso(`Pessoa ${this.id ? 'atualizada' : 'cadastrada'} com sucesso!`);
       this.router.navigate(['cadastros/pessoa']);
     } catch (error) {
-      this.mensageiro.erro(error);
+      this.mensageiro.processarErroBack(error);
     }
   }
 
@@ -106,7 +106,7 @@ export class PessoaComponent implements OnInit {
               this.listOfSelectedValue.push(this.lstHabilidades.find(j => j.id === i.id));
             });
           },
-          error => this.mensageiro.erro(error),
+          error => this.mensageiro.processarErroBack(error),
           () => this.sharedService.esconderLoader(),
         );
       }

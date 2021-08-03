@@ -30,7 +30,7 @@ export class ListarHabilidadeComponent implements OnInit {
         }
         this.habilidades = res;
       },
-      error => this.mensageiro.erro(error),
+      error => this.mensageiro.processarErroBack(error),
       () => this.sharedService.esconderLoader(),
     );
   }
@@ -48,7 +48,7 @@ export class ListarHabilidadeComponent implements OnInit {
         this.mensageiro.sucesso(`Habilidade ${habilidade.descricao} deletada com sucesso!`);
         this.search();
       },
-      error => this.mensageiro.erro(error),
+      error => this.mensageiro.processarErroBack(error),
       () => this.sharedService.esconderLoader(),
     );
   }

@@ -37,15 +37,15 @@
 <nz-table #basicTable nzBordered [nzData]="page?.content">
   <thead>
     <tr>
-      <th nzWidth="90px" class="text-center">CPF </th>
-      <th>Nome </th>
-      <th>E-mail </th>
-      <th nzWidth="100px" class="text-center">Ações</th>
+      <th class="text-center w-10">CPF </th>
+      <th class="w-40">Nome </th>
+      <th class="w-40">E-mail </th>
+      <th class="text-center w-10">Ações</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor=" let data of basicTable.data">
-      <td>{{ data.cpf | cpfPipe }}</td>
+      <td class="text-center">{{ data.cpf | cpfPipe }}</td>
       <td>{{ data.nome }}</td>
       <td>{{ data.email }}</td>
 

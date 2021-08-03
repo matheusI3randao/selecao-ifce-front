@@ -25,12 +25,19 @@ export class HabilidadeComponent implements OnInit {
     private mensageiro: MensageiroService,
     private sharedService: SharedService,
     private habilidadeService: HabilidadeService,
-  ) {}
+  ) { }
 
   async save() {
+    ValidatorsUtils.validarCampos(this.formHabilidade);
+
+    if (this.formHabilidade.invalid) {
+      this.mensageiro.aviso('Preencha todos os campos obrigatórios!');
+      return;
+    }
+
     this.habilidadeInput = {
       id: this.id,
-      descricao: this.formHabilidade.controls.descricao.value,
+      descricao: this.formHabilidade.controls.descricao.value.toUpperCase(),
     };
 
     if (this.id) {
@@ -51,7 +58,7 @@ export class HabilidadeComponent implements OnInit {
         this.sharedService.mostrarLoader();
         this.habilidadeService.findById(this.id).subscribe(
           res => this.formHabilidade.patchValue(res),
-          error => this.mensageiro.erro(error),
+          error => this.mensageiro.processarErroBack(error),
           () => this.sharedService.esconderLoader(),
         );
       }

@@ -1,13 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NzNotificationService } from 'ng-zorro-antd';
+import IErro from '../models/erro.interface';
 import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MensageiroService {
-  constructor(private sharedService: SharedService, private notification: NzNotificationService) {}
+  constructor(private sharedService: SharedService, private notification: NzNotificationService) { }
 
   public erro(texto: string, titulo?: string): void {
     this.sharedService.esconderLoader();
@@ -38,5 +39,14 @@ export class MensageiroService {
     });
   }
 
-  public processarErroBack(err: HttpErrorResponse): void {}
+  public processarErroBack(err: HttpErrorResponse): void {
+    if (err.status === 0) {
+      this.erro('Servidor fora do ar!');
+      return;
+    }
+
+    const erro = err?.error as IErro;
+
+    this.erro(erro.message);
+  }
 }
